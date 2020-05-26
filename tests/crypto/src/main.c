@@ -77,10 +77,18 @@ void test_main(void)
 		   ITEM_COUNT(test_case_ecdh_data, test_case_t));
 	run_suites(__start_test_case_ecdh_data,
 		   ITEM_COUNT(test_case_ecdh_data, test_case_t));
+	run_suites(__start_test_case_sha_1_data,
+		   ITEM_COUNT(test_case_sha_1_data, test_case_t));
+	run_suites(__start_test_case_sha_224_data,
+		   ITEM_COUNT(test_case_sha_224_data, test_case_t));
 	run_suites(__start_test_case_sha_256_data,
 		   ITEM_COUNT(test_case_sha_256_data, test_case_t));
+	run_suites(__start_test_case_sha_384_data,
+		   ITEM_COUNT(test_case_sha_384_data, test_case_t));
 	run_suites(__start_test_case_sha_512_data,
 		   ITEM_COUNT(test_case_sha_512_data, test_case_t));
+	run_suites(__start_test_case_ripemd_160_data,
+		   ITEM_COUNT(test_case_ripemd_160_data, test_case_t));
 	run_suites(__start_test_case_hmac_data,
 		   ITEM_COUNT(test_case_hmac_data, test_case_t));
 	run_suites(__start_test_case_hkdf_data,

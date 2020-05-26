@@ -914,8 +914,119 @@ ITEM_REGISTER(test_vector_hmac_data,
 };
 #endif
 
+#if defined MBEDTLS_SHA1_C
+const char flash_data_sha_1[4096] = { "1234567890" };
+
+/* SHA-1 - Based on NIST CAVS 11.0 */
+ITEM_REGISTER(test_vector_hash_sha_1_data,
+	      test_vector_hash_t test_vector_SHA_1_invalid) = {
+	.digest_type = MBEDTLS_MD_SHA1 ,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_FAIL,
+	.p_test_vector_name = TV_NAME("SHA-1 invalid hash"),
+	.p_input =
+		"7c9c67323a1df1adbfe5ceb415eaef0155ece2820f4d50c1ec22cba4928ac656c83fe585db6a78ce40bc42757aba7e5a3f582428d6ca68d0c3978336a6"
+		"efb729613e8d9979016204bfd921322fdd5222183554447de5e6e9bbe6edf76d7b71e18dc2e8d6dc89b7398364f652fafc734329aafa3dcd45d4f31e38"
+		"8e4fafd7fc6495f37ca5cbab7f54d586463da4bfeaa3bae09f7b8e9239d832b4f0a733aa609cc1f8d4",
+	.p_expected_output = "4a75a406f4de5f9e1132069d66717fc424376388"
+};
+
+/* SHA-1 - NIST CAVS 11.0 */
+ITEM_REGISTER(test_vector_hash_sha_1_data,
+	      test_vector_hash_t test_vector_SHA_1_0) = {
+	.digest_type = MBEDTLS_MD_SHA1,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.p_test_vector_name = TV_NAME("SHA-1 message_len=0"),
+	.p_input = "",
+	.p_expected_output =
+		"da39a3ee5e6b4b0d3255bfef95601890afd80709"
+};
+
+/* SHA-1 - NIST CAVS 11.0 */
+ITEM_REGISTER(test_vector_hash_sha_1_data,
+	      test_vector_hash_t test_vector_SHA_1_2) = {
+	.digest_type = MBEDTLS_MD_SHA1,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.p_test_vector_name = TV_NAME("SHA-1 message_len=2"),
+	.p_input = "195a",
+	.p_expected_output =
+		"0a1c2d555bbe431ad6288af5a54f93e0449c9232"
+};
+
+/* Log test vectors to use the update function in serval itterations with the input (regex) (1234567890(0){4086}){256} */
+ITEM_REGISTER(test_vector_hash_sha_1_long_data,
+	      test_vector_hash_t test_vector_SHA_1_long) = {
+	.digest_type = MBEDTLS_MD_SHA256,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.mode = NO_MODE,
+	.chunk_length = 4096,
+	.update_iterations = 256,
+	.p_test_vector_name = TV_NAME("SHA-1 message_len=1048576"),
+	.p_input = flash_data_sha_1,
+	.p_expected_output =
+		"dfb35e1b29af7f25d712060597c155f3c3bdf061"
+};
+#endif
+
+
+
 #if defined(MBEDTLS_SHA256_C)
 const char flash_data_sha_256[4096] = { "1234567890" };
+
+/* SHA224 - Based on NIST CAVS 11.0 */
+ITEM_REGISTER(test_vector_hash_224_data,
+	      test_vector_hash_t test_vector_SHA224_invalid) = {
+	.digest_type = MBEDTLS_MD_SHA224,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_FAIL,
+	.p_test_vector_name = TV_NAME("SHA224 invalid hash"),
+	.p_input =
+		"934416dd0581e22f2bfbece7bb64afe820451fa21342df7e6f9fb37c4103381a1f7cd379bcc4",
+	.p_expected_output =
+		"8f34812d57a16ef8a51ad987660c5f8623e0fa9d89846e28d46d14d9"
+};
+
+/* SHA224 - NIST CAVS 11.0 */
+ITEM_REGISTER(test_vector_hash_224_data,
+	      test_vector_hash_t test_vector_SHA224_0) = {
+	.digest_type = MBEDTLS_MD_SHA224,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.p_test_vector_name = TV_NAME("SHA224 message_len=0"),
+	.p_input = "",
+	.p_expected_output =
+		"d14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f"
+};
+
+/* SHA224 - NIST CAVS 11.0 */
+ITEM_REGISTER(test_vector_hash_224_data,
+	      test_vector_hash_t test_vector_SHA224_2) = {
+	.digest_type = MBEDTLS_MD_SHA224,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.p_test_vector_name = TV_NAME("SHA224 message_len=2"),
+	.p_input = "5c7b",
+	.p_expected_output =
+		"daff9bce685eb831f97fc1225b03c275a6c112e2d6e76f5faf7a36e6"
+};
+
+/* Log test vectors to use the update function in serval itterations with the input (regex) (1234567890(0){4086}){256} */
+ITEM_REGISTER(test_vector_hash_224_long_data,
+	      test_vector_hash_t test_vector_SHA224_long) = {
+	.digest_type = MBEDTLS_MD_SHA256,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.mode = NO_MODE,
+	.chunk_length = 4096,
+	.update_iterations = 256,
+	.p_test_vector_name = TV_NAME("SHA224 message_len=1048576"),
+	.p_input = flash_data_sha_256,
+	.p_expected_output =
+		"e52eaf626a37be967b86ed5e6381ee2129bb3940613141c698439d55"
+};
 
 /* SHA256 - Based on NIST CAVS 11.0 */
 ITEM_REGISTER(test_vector_hash_256_data,
@@ -954,10 +1065,77 @@ ITEM_REGISTER(test_vector_hash_256_data,
 	.p_expected_output =
 		"7abc22c0ae5af26ce93dbb94433a0e0b2e119d014f8e7f65bd56c61ccccd9504"
 };
+
+/* Log test vectors to use the update function in serval itterations with the input (regex) (1234567890(0){4086}){256} */
+ITEM_REGISTER(test_vector_hash_256_long_data,
+	      test_vector_hash_t test_vector_SHA256_long) = {
+	.digest_type = MBEDTLS_MD_SHA256,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.mode = NO_MODE,
+	.chunk_length = 4096,
+	.update_iterations = 256,
+	.p_test_vector_name = TV_NAME("SHA256 message_len=1048576"),
+	.p_input = flash_data_sha_256,
+	.p_expected_output =
+		"7b09661bdd3dc086e9303102e0c1da76eef506e403419f722947e377a6edec00"
+};
 #endif
 
 #if defined(MBEDTLS_SHA512_C)
 const char flash_data_sha_512[4096] = { "1234567890" };
+
+/* SHA384 - Based on NIST CAVS 11.0 */
+ITEM_REGISTER(test_vector_hash_384_data,
+	      test_vector_hash_t test_vector_SHA384_invalid) = {
+	.digest_type = MBEDTLS_MD_SHA384,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_FAIL,
+	.p_test_vector_name = TV_NAME("SHA384 invalid hash"),
+	.p_input =
+		"b1eeef324b499f19eba322215fe3ce19c9f000b698d2b2dab7145015046cc86d049ee15ad59dcd1564f30112e06444cb",
+	.p_expected_output =
+		"6cd29159820d34e5706dd867e6363758d312660d4daca8d2abf677f234746e97a0a6224eb054066a0b74e18c70965368"
+};
+
+/* SHA384 - NIST CAVS 11.0 */
+ITEM_REGISTER(test_vector_hash_384_data,
+	      test_vector_hash_t test_vector_SHA384_0) = {
+	.digest_type = MBEDTLS_MD_SHA384,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.p_test_vector_name = TV_NAME("SHA384 message_len=0"),
+	.p_input = "",
+	.p_expected_output =
+		"38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b"
+};
+
+/* SHA384 - NIST CAVS 11.0 */
+ITEM_REGISTER(test_vector_hash_384_data,
+	      test_vector_hash_t test_vector_SHA384_2) = {
+	.digest_type = MBEDTLS_MD_SHA384,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.p_test_vector_name = TV_NAME("SHA384 message_len=2"),
+	.p_input = "6ece",
+	.p_expected_output =
+		"53d4773da50d8be4145d8f3a7098ff3691a554a29ae6f652cc7121eb8bc96fd2210e06ae2fa2a36c4b3b3497341e70f0"
+};
+
+/* Log test vectors to use the update function in serval itterations with the input (regex) (1234567890(0){4086}){256} */
+ITEM_REGISTER(test_vector_hash_384_long_data,
+	      test_vector_hash_t test_vector_SHA384_long) = {
+	.digest_type = MBEDTLS_MD_SHA256,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.mode = NO_MODE,
+	.chunk_length = 4096,
+	.update_iterations = 256,
+	.p_test_vector_name = TV_NAME("SHA384 message_len=1048576"),
+	.p_input = flash_data_sha_512,
+	.p_expected_output =
+		"21f7829a0ffc61e5beff5fc03ed7d81906fe07f5b55003d90b9d0617684949c5fa46ea9f102fd872098e54ee06729707"
+};
 
 /* SHA512 - Based on NIST CAVS 11.0 */
 ITEM_REGISTER(test_vector_hash_512_data,
@@ -998,5 +1176,80 @@ ITEM_REGISTER(test_vector_hash_512_data,
 	.p_expected_output =
 		"dadb1b5a27f9fece8d86adb2a51879beb1787ff28f4e8ce162cad7fee0f942efcabbf7"
 		"38bc6f797fc7cc79a3a75048cd4c82ca0757a324695bfb19a557e56e2f"
+};
+
+/* Log test vectors to use the update function in serval itterations with the input (regex) (1234567890(0){4086}){256} */
+ITEM_REGISTER(test_vector_hash_512_long_data,
+	      test_vector_hash_t test_vector_sha512_long) = {
+	.digest_type = MBEDTLS_MD_SHA512,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.mode = NO_MODE,
+	.chunk_length = 4096,
+	.update_iterations = 256,
+	.p_test_vector_name = TV_NAME("SHA512 message_len=1048576"),
+	.p_input = flash_data_sha_512,
+	.p_expected_output =
+		"4f544f809b8a0a7052eca55df04ba4b19c3ecd2dca6c721ab7e88d94574d663cbde4ca"
+		"3dc114f92c827226184899c5c48c706b20d66cb056f97e0a21cf2979f5"
+};
+#endif
+
+
+#if defined(MBEDTLS_RIPEMD160_C)
+const char flash_data_ripemd_160[4096] = { "1234567890" };
+
+/* RIPEMD160 - Based on KU Leuven */
+ITEM_REGISTER(test_vector_hash_ripemd_160_data,
+	      test_vector_hash_t test_vector_RIPEMD160_invalid) = {
+	.digest_type = MBEDTLS_MD_RIPEMD160,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_FAIL,
+	.p_test_vector_name = TV_NAME("RIPEMD160 invalid hash"),
+	.p_input =
+		"abc",
+	.p_expected_output =
+		"5d0689ef49d2fae572b881b123a85ffa21595f36"
+};
+
+/* RIPEMD160 - Based on KU Leuven */
+ITEM_REGISTER(test_vector_hash_ripemd_160_data,
+	      test_vector_hash_t test_vector_RIPEMD160_0) = {
+	.digest_type = MBEDTLS_MD_RIPEMD160,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.p_test_vector_name = TV_NAME("RIPEMD160 message_len=0"),
+	.p_input =
+		"",
+	.p_expected_output =
+		"9c1185a5c5e9fc54612808977ee8f548b2258d31"
+};
+
+/* RIPEMD160 - Based on KU Leuven */
+ITEM_REGISTER(test_vector_hash_ripemd_160_data,
+	      test_vector_hash_t test_vector_RIPEMD160_1) = {
+	.digest_type = MBEDTLS_MD_RIPEMD160,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.p_test_vector_name = TV_NAME("RIPEMD160 message_len=1"),
+	.p_input =
+		"61",
+	.p_expected_output =
+		"0bdc9d2d256b3ee9daae347be6f4dc835a467ffe"
+};
+
+/* Log test vectors to use the update function in serval itterations with the input (regex) (1234567890(0){4086}){256} */
+ITEM_REGISTER(test_vector_hash_384_long_data,
+	      test_vector_hash_t test_vector_RIPEMD160_long_flash) = {
+	.digest_type = MBEDTLS_MD_RIPEMD160,
+	.expected_err_code = 0,
+	.expected_result = EXPECTED_TO_PASS,
+	.mode = DO_MEMCPY,
+	.chunk_length = 4096,
+	.update_iterations = 256,
+	.p_test_vector_name = TV_NAME("RIPEMD-160 flash memcpy message_len=1048576"),
+	.p_input = flash_data_ripemd_160,
+	.p_expected_output =
+		"2c06e0ddf8460e85b0186fab6edc97cad94c3aa9"
 };
 #endif

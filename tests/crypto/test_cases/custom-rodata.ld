@@ -134,9 +134,44 @@ KEEP(*(test_vector_hmac_data))
 __stop_test_vector_hmac_data = .;
 
 . = ALIGN(4);
+__start_test_vector_hash_sha_1_data = .;
+KEEP(*(test_vector_hash_sha_1_data))
+__stop_test_vector_hash_sha_1_data = .;
+
+. = ALIGN(4);
+__start_test_vector_hash_sha_1_long_data = .;
+KEEP(*(test_vector_hash_sha_1_long_data))
+__stop_test_vector_hash_sha_1_long_data = .;
+
+. = ALIGN(4);
+__start_test_vector_hash_224_data = .;
+KEEP(*(test_vector_hash_224_data))
+__stop_test_vector_hash_224_data = .;
+
+. = ALIGN(4);
+__start_test_vector_hash_224_long_data = .;
+KEEP(*(test_vector_hash_224_long_data))
+__stop_test_vector_hash_224_long_data = .;
+
+. = ALIGN(4);
 __start_test_vector_hash_256_data = .;
 KEEP(*(test_vector_hash_256_data))
 __stop_test_vector_hash_256_data = .;
+
+. = ALIGN(4);
+__start_test_vector_hash_256_long_data = .;
+KEEP(*(test_vector_hash_256_long_data))
+__stop_test_vector_hash_256_long_data = .;
+
+. = ALIGN(4);
+__start_test_vector_hash_384_data = .;
+KEEP(*(test_vector_hash_384_data))
+__stop_test_vector_hash_384_data = .;
+
+. = ALIGN(4);
+__start_test_vector_hash_384_long_data = .;
+KEEP(*(test_vector_hash_384_long_data))
+__stop_test_vector_hash_384_long_data = .;
 
 . = ALIGN(4);
 __start_test_vector_hash_512_data = .;
@@ -149,9 +184,14 @@ KEEP(*(test_vector_hash_512_long_data))
 __stop_test_vector_hash_512_long_data = .;
 
 . = ALIGN(4);
-__start_test_vector_hash_256_long_data = .;
-KEEP(*(test_vector_hash_256_long_data))
-__stop_test_vector_hash_256_long_data = .;
+__start_test_vector_hash_ripemd_160_data = .;
+KEEP(*(test_vector_hash_ripemd_160_data))
+__stop_test_test_vector_hash_ripemd_160_data = .;
+
+. = ALIGN(4);
+__start_test_vector_hash_ripemd_160_long_data = .;
+KEEP(*(test_vector_hash_ripemd_160_long_data))
+__stop_test_test_vector_hash_ripemd_160_long_data = .;
 
 . = ALIGN(4);
 __start_test_vector_ecjpake_given_data = .;
@@ -164,14 +204,34 @@ KEEP(*(test_vector_ecjpake_random_data))
 __stop_test_vector_ecjpake_random_data = .;
 
 . = ALIGN(4);
+__start_test_case_sha_1_data = .;
+KEEP(*(test_case_sha_1_data))
+__stop_test_case_sha_1_data = .;
+
+. = ALIGN(4);
+__start_test_case_sha_224_data = .;
+KEEP(*(test_case_sha_224_data))
+__stop_test_case_sha_224_data = .;
+
+. = ALIGN(4);
 __start_test_case_sha_256_data = .;
 KEEP(*(test_case_sha_256_data))
 __stop_test_case_sha_256_data = .;
 
 . = ALIGN(4);
+__start_test_case_sha_384_data = .;
+KEEP(*(test_case_sha_384_data))
+__stop_test_case_sha_384_data = .;
+
+. = ALIGN(4);
 __start_test_case_sha_512_data = .;
 KEEP(*(test_case_sha_512_data))
 __stop_test_case_sha_512_data = .;
+
+. = ALIGN(4);
+__start_test_case_ripemd_160_data = .;
+KEEP(*(test_case_ripemd_160_data))
+__stop_test_case_ripemd_160_data = .;
 
 . = ALIGN(4);
 __start_test_case_hmac_data = .;

@@ -22,7 +22,7 @@
 #include CONFIG_MBEDTLS_CFG_FILE
 #endif /* CONFIG_MBEDTLS_CFG_FILE */
 #endif
-#include <mbedtls/platform.h>
+
 #include <mbedtls/cipher.h>
 #if defined(CONFIG_NRF_CC310_PLATFORM)
 #include <nrf_cc310_platform.h>
@@ -139,11 +139,23 @@ typedef const struct {
 	const void *vectors_stop; /**< End test vector pointer. */
 } test_case_t;
 
+extern test_case_t __start_test_case_sha_1_data[];
+extern test_case_t __stop_test_case_sha_1_data[];
+
+extern test_case_t __start_test_case_sha_224_data[];
+extern test_case_t __stop_test_case_sha_224_data[];
+
 extern test_case_t __start_test_case_sha_256_data[];
 extern test_case_t __stop_test_case_sha_256_data[];
 
+extern test_case_t __start_test_case_sha_384_data[];
+extern test_case_t __stop_test_case_sha_384_data[];
+
 extern test_case_t __start_test_case_sha_512_data[];
 extern test_case_t __stop_test_case_sha_512_data[];
+
+extern test_case_t __start_test_case_ripemd_160_data[];
+extern test_case_t __stop_test_case_ripemd_160_data[];
 
 extern test_case_t __start_test_case_hmac_data[];
 extern test_case_t __stop_test_case_hmac_data[];

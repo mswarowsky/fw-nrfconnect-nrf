@@ -11,8 +11,12 @@ zephyr_linker_sources(RODATA
     ${CMAKE_CURRENT_SOURCE_DIR}/custom-rodata.ld
 )
 
+zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA1_C          test_sha_1.c)
+zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA256_C        test_sha_224.c)
 zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA256_C        test_sha_256.c)
+zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA512_C        test_sha_384.c)
 zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA512_C        test_sha_512.c)
+zephyr_sources_ifdef(CONFIG_MBEDTLS_RIPEMD160_C     test_ripemd_160.c)
 zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA256_C        test_hmac.c)
 zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA256_C        test_hkdf.c)
 zephyr_sources_ifdef(CONFIG_MBEDTLS_ECDH_C          test_ecdh.c)
@@ -44,8 +48,13 @@ zephyr_sources_ifdef(CONFIG_MBEDTLS_ECDSA_C         test_vectors_ecdsa_verify.c)
 zephyr_sources_ifdef(CONFIG_MBEDTLS_ECJPAKE_C       test_vectors_ecjpake.c)
 zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA256_C        test_vectors_hkdf.c)
 zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA256_C        test_vectors_hmac.c)
+zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA1_C          test_vectors_sha_1.c)
+zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA256_C        test_vectors_sha_224.c)
 zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA256_C        test_vectors_sha_256.c)
+zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA512_C        test_vectors_sha_384.c)
 zephyr_sources_ifdef(CONFIG_MBEDTLS_SHA512_C        test_vectors_sha_512.c)
+zephyr_sources_ifdef(CONFIG_MBEDTLS_RIPEMD160_C     test_vectors_ripemd_160.c)
+
 
 # This is set differently based on backend
 if(CONFIG_CC310_MBEDTLS_CCM_C OR CONFIG_VANILLA_MBEDTLS_CCM_C OR CONFIG_MBEDTLS_CCM_C)

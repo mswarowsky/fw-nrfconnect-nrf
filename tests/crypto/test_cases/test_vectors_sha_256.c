@@ -331,6 +331,7 @@ ITEM_REGISTER(test_vector_hash_256_data,
 		"f98918c63e3a9238e78dbd5bebe4e47eaeec0ae1627387dcd2a5ae4725f7e47c"
 };
 
+/* Log test vectors to use the update function in serval itterations with the input (regex) (1234567890(0){4086}){256} */
 ITEM_REGISTER(test_vector_hash_256_long_data,
 	      test_vector_hash_t test_vector_SHA256_long) = {
 	.digest_type = MBEDTLS_MD_SHA256,
@@ -345,6 +346,7 @@ ITEM_REGISTER(test_vector_hash_256_long_data,
 		"7b09661bdd3dc086e9303102e0c1da76eef506e403419f722947e377a6edec00"
 };
 
+/* Log test vectors to use the update function in serval itterations with the input (regex) (1234567890(0){4086}){256} */
 ITEM_REGISTER(test_vector_hash_256_long_data,
 	      test_vector_hash_t test_vector_SHA256_long_flash) = {
 	.digest_type = MBEDTLS_MD_SHA256,
